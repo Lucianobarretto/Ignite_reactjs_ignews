@@ -10,3 +10,13 @@ export default NextAuth({
     }),
   ],
 })
+
+// BANCO DE DADOS
+
+// FaunaDB - HTTP => está cada vez mais sendo usado no Next para ações mais simples,
+//                          não dependendo muito em alguns casos do Back-end.
+// DynamoDB - AWS
+// PostgreSQL, MongoDB
+
+// 24h (1 conexão)
+// 1000 autenticação ()
