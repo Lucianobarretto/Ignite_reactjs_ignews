@@ -1,5 +1,9 @@
+import { query as q } from 'faunadb'
+
 import NextAuth from 'next-auth'
 import Providers from 'next-auth/providers'
+
+import { fauna } from '../../../services/fauna';
 
 export default NextAuth({
   providers: [
@@ -9,14 +13,25 @@ export default NextAuth({
       scope: 'read:user'
     }),
   ],
+  jwt: {
+    signingKey: process.env.SIGNING_KEY,
+  },
+  callbacks: {
+    async signIn(user, account, profile) {
+      const { email } = user
+
+      try {
+        await fauna.query(
+          q.Create(
+            q.Collection('users'),
+            { data: { email } }
+          )
+        )
+
+        return true
+      } catch {
+        return false
+      }
+    },
+  }
 })
-
-// BANCO DE DADOS
-
-// FaunaDB - HTTP => está cada vez mais sendo usado no Next para ações mais simples,
-//                          não dependendo muito em alguns casos do Back-end.
-// DynamoDB - AWS
-// PostgreSQL, MongoDB
-
-// 24h (1 conexão)
-// 1000 autenticação ()
