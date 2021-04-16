@@ -1,12 +1,24 @@
 import { GetStaticProps } from 'next';
 import Head from 'next/head';
 import Prismic from '@prismicio/client'
+import { RichText } from 'prismic-dom'
 
 import { getPrismicClient } from '../../services/prismic';
 
 import styles from './styles.module.scss';
 
-export default function Posts() {
+type Post = {
+  slug: string;
+  title: string;
+  summary: string;
+  updatedAt: string;
+};
+
+interface PostsProps {
+  posts: Post[]
+}
+
+export default function Posts({ posts }) {
   return (
     <>
       <Head>
@@ -15,21 +27,13 @@ export default function Posts() {
 
       <main className={styles.container}>
         <div className={styles.posts}>
-          <a href="#">
-            <time>15 de abril de 2021</time>
-            <strong>TypeScript: Vantagens, mitos, dicas e conceitos fundamentais</strong>
-            <p>Nesse post vamos entender as vantagens da utilização de tipagem estática em nosso código JavaScript utilizando TypeScript, além disso iremos abordar alguns mitos associados com a utilização dessa ferramenta.</p>
+          { posts.map(post => (
+          <a key={post.slug} href="#">
+            <time>{post.updatedAt}</time>
+            <strong>{post.title}</strong>
+            <p>{post.summary}</p>
           </a>
-          <a href="#">
-            <time>15 de abril de 2021</time>
-            <strong>TypeScript: Vantagens, mitos, dicas e conceitos fundamentais</strong>
-            <p>Nesse post vamos entender as vantagens da utilização de tipagem estática em nosso código JavaScript utilizando TypeScript, além disso iremos abordar alguns mitos associados com a utilização dessa ferramenta.</p>
-          </a>
-          <a href="#">
-            <time>15 de abril de 2021</time>
-            <strong>TypeScript: Vantagens, mitos, dicas e conceitos fundamentais</strong>
-            <p>Nesse post vamos entender as vantagens da utilização de tipagem estática em nosso código JavaScript utilizando TypeScript, além disso iremos abordar alguns mitos associados com a utilização dessa ferramenta.</p>
-          </a>
+          )) }
         </div>
       </main>
     </>
@@ -46,9 +50,22 @@ export const getStaticProps: GetStaticProps = async () => {
     pageSize: 100,
   })
 
-  console.log(JSON.stringify(response, null, 2))
+  const posts = response.results.map(post => {
+    return {
+      slug: post.uid,
+      title: RichText.asText(post.data.title),
+      summary: post.data.content.find(content => content.type === 'paragraph')?.text ?? '',
+      updatedAt: new Date(post.last_publication_date).toLocaleDateString('en-US', {
+        day: '2-digit',
+        month: 'long',
+        year: 'numeric'
+      })
+    };
+  });
 
   return {
-    props: {}
+    props: {
+      posts
+    }
   }
 }
