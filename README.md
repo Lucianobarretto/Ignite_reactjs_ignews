@@ -134,12 +134,12 @@ $ yarn dev
 
 ## Licença
 
-Esse projeto está sob sob a licença MIT. Veja [LICENSE](LICENSE) para mais detalhes.
+Esse projeto está sob sob a licença MIT. Veja LICENSE para mais detalhes.
 
 <br>
 
 <p align="center">  
-  <a href="https://github.com/Lucianobarretto/letmeask/blob/master/LICENSE.md">
+  <a href="https://github.com/Lucianobarretto/ignews/blob/master/LICENSE.md">
     <img alt="License" src="https://img.shields.io/badge/LICENSE-MIT-orange">
   </a>
 </p>
