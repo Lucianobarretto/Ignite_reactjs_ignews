@@ -9,13 +9,13 @@
 </p>
 
 <p align="center">
- <a href="#sobre-o-projeto">Sobre o Projeto</a> •
- <a href="#tecnologias">Tecnologias</a> •
- <a href="#configurações-necessárias">Configurações necessárias</a> •
- <a href="#licença">Licença</a>
+ <a href="#page_facing_up-sobre-o-projeto">Sobre o Projeto</a> •
+ <a href="#-tecnologias">Tecnologias</a> •
+ <a href="#closed_book-instalação">Instalação</a> •
+ <a href="#memo-licença">Licença</a>
 </p>
 
-## Sobre o projeto
+## :page_facing_up: Sobre o projeto
 
 O projeto tem como objetivo o estudo e desenvolvimento de uma aplicação em ReactJS com NextJS para listagem de posts e sistema de inscrição(subscription).
 
@@ -69,7 +69,7 @@ A aplicação foi desenvolvida utilizando o framework NextJS aplicando conceitos
 
 ---
 
-## Tecnologias
+## 🛠 Tecnologias
 
 Abaixo as tecnologias utilizadas para construção da aplicação
 
@@ -84,7 +84,7 @@ Abaixo as tecnologias utilizadas para construção da aplicação
 
 ---
 
-## Configurações necessárias
+## :closed_book: Instalação
 
 ### **Requisitos**
 
@@ -132,7 +132,7 @@ $ yarn dev
 
 ---
 
-## Licença
+## :memo: Licença
 
 Esse projeto está sob sob a licença MIT. Veja LICENSE para mais detalhes.
 
